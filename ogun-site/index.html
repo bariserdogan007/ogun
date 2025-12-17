@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ogün Sanlısoy | Tıkla Dinle</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #020617;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, sans-serif;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    h1 {
+      text-align: center;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>
+    Her yere tıkla 🎸<br>
+    Ogün Sanlısoy çalsın
+  </h1>
+
+  <!-- 3 ŞARKI -->
+  <audio src="sarkilar/ogun_sanlisoy_1.mp3"></audio>
+  <audio src="sarkilar/ogun_sanlisoy_2.mp3"></audio>
+  <audio src="sarkilar/ogun_sanlisoy_3.mp3"></audio>
+
+  <!-- TEK VE DOĞRU SCRIPT -->
+  <script>
+    const songs = document.querySelectorAll('audio');
+    let last = -1;
+
+    document.body.addEventListener('click', () => {
+      let i;
+      do {
+        i = Math.floor(Math.random() * songs.length);
+      } while (i === last);
+
+      last = i;
+
+      songs.forEach(s => {
+        s.pause();
+        s.currentTime = 0;
+      });
+
+      const song = songs[i];
+      song.volume = 1;
+      song.currentTime = 0;
+      song.play();
+    });
+  </script>
+
+</body>
+</html>
